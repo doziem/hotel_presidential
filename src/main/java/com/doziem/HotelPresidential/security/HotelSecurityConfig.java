@@ -4,7 +4,6 @@ import com.doziem.HotelPresidential.security.jwt.AuthTokenFilter;
 import com.doziem.HotelPresidential.security.jwt.JwtAuthEntryPoint;
 import com.doziem.HotelPresidential.security.user.HotelUsersDetailsService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -61,7 +60,8 @@ public class HotelSecurityConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers("/auth/**", "/rooms/**","/bookings/**")
-                        .permitAll().requestMatchers("/roles/**").hasRole("ADMIN")
+                        .permitAll().requestMatchers("/roles/**")
+                        .hasRole("ADMIN")
                         .anyRequest().authenticated());
         http.authenticationProvider(authenticationProvider());
         http.addFilterBefore(authenticationTokenFilter(), UsernamePasswordAuthenticationFilter.class);

@@ -1,6 +1,5 @@
 package com.doziem.HotelPresidential.response;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
